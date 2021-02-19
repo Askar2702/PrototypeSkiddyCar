@@ -31,13 +31,11 @@ public class CarController : MonoBehaviour
         HandleMotor();
         HandleSteering();
         UpdateWheels();
-        if (GameManager.gameManager._gameState == GameManager.GameState.Lose ||
-            GameManager.gameManager._gameState == GameManager.GameState.Win ||
-            GameManager.gameManager._gameState == GameManager.GameState.Start)
+        if (GameManager.gameManager._gameState == GameManager.GameState.Win )
         {
             isBreaking = true;
             verticalInput = 0;
-            HandleMotor();
+            GetComponent<Rigidbody>().isKinematic = true;
             return;
         }
         else isBreaking = false;
@@ -47,6 +45,7 @@ public class CarController : MonoBehaviour
 
     private void GetInput()
     {
+        if (GameManager.gameManager._gameState != GameManager.GameState.Play) return;
         if (Input.GetMouseButton(0) || Input.touchCount > 0) 
         { 
             horizontalInput = 0.5f;

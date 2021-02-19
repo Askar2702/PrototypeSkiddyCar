@@ -75,7 +75,6 @@ public class GameManager : MonoBehaviour
         else if (gameMode == GameMode.Hard) PlayerPrefs.SetInt("lvl", 3);
         else if (gameMode == GameMode.VeryHard) PlayerPrefs.DeleteKey("lvl");
         RestartGame();
-        Debug.Log("Win");
     }
 
     private void OnEnable()
