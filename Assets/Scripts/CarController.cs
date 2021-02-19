@@ -37,6 +37,7 @@ public class CarController : MonoBehaviour
         {
             isBreaking = true;
             verticalInput = 0;
+            HandleMotor();
             return;
         }
         else isBreaking = false;
