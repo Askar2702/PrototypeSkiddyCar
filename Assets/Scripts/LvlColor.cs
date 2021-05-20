@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class LvlColor : MonoBehaviour
 {
-    [SerializeField] Color[] colorLvl;
-    Camera camera;
+    [SerializeField] private Color[] _colorLvl;
+    private Camera _camera;
     private void Awake()
     {
-        camera = Camera.main;
+        _camera = Camera.main;
     }
     void Start()
     {
-        camera.backgroundColor = colorLvl[Random.Range(0, colorLvl.Length)];
+        _camera.backgroundColor = _colorLvl[Random.Range(0, _colorLvl.Length)];
     }
 
     

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Drift : MonoBehaviour
 {
-    [SerializeField] TrailRenderer[] trailRenderer;
-    [SerializeField] ParticleSystem[] steam;
+    [SerializeField] TrailRenderer[] _trailRenderer;
+    [SerializeField] ParticleSystem[] _steam;
 
     private void Update()
     {
@@ -37,14 +37,14 @@ public class Drift : MonoBehaviour
     }
     private void particlePlay()
     {
-        foreach (ParticleSystem particle in steam)
+        foreach (ParticleSystem particle in _steam)
         {
             particle.Play();
         }
     }
     private void StartDrift()
     {
-        foreach(TrailRenderer T in trailRenderer)
+        foreach(TrailRenderer T in _trailRenderer)
         {
             T.emitting = true;
         }

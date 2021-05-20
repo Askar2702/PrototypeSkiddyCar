@@ -727,9 +727,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dff2c248a9ae614b8ef52f5cf6a1adf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textGold: {fileID: 1429205049}
-  startGame: {fileID: 827136793}
-  exitGame: {fileID: 785686693}
+  _textGold: {fileID: 1429205049}
+  _startGame: {fileID: 827136793}
+  _exitGame: {fileID: 785686693}
 --- !u!114 &908346098
 MonoBehaviour:
   m_ObjectHideFlags: 0

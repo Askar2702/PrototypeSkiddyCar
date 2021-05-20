@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Gold : MonoBehaviour
 {
-    UIManager uIManager;
+    private UIManager _uIManager;
     private void Awake()
     {
-        uIManager = FindObjectOfType<UIManager>();
+        _uIManager = FindObjectOfType<UIManager>();
     }
     void FixedUpdate()
     {
@@ -18,7 +18,7 @@ public class Gold : MonoBehaviour
     {
         if (other.transform.GetComponent<CarController>())
         {
-            uIManager.GoldPlus();
+            _uIManager.GoldPlus();
             Destroy(gameObject);
         }
     }

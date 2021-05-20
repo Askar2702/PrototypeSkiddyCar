@@ -6,17 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField] Text textGold;
-    [SerializeField] Button startGame;
-    [SerializeField] Button exitGame;
+    [SerializeField] private Text _textGold;
+    [SerializeField] private Button _startGame;
+    [SerializeField] private Button _exitGame;
     void Start()
     {
-        startGame.onClick.AddListener(() => StartGame());
-        exitGame.onClick.AddListener(() => ExitGame());
+        _startGame.onClick.AddListener(() => StartGame());
+        _exitGame.onClick.AddListener(() => ExitGame());
         if (PlayerPrefs.HasKey("Gold"))
-            textGold.text += " " + PlayerPrefs.GetInt("Gold");
+            _textGold.text += " " + PlayerPrefs.GetInt("Gold");
         else
-            textGold.text += " " + 0;
+            _textGold.text += " " + 0;
     }
 
     // Update is called once per frame

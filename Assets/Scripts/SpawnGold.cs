@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SpawnGold : MonoBehaviour
 {
-    [SerializeField] GameObject gold;
-    [SerializeField] Transform SpawnPoint;
+    [SerializeField] private GameObject _gold;
+    [SerializeField]  private Transform _spawnPoint;
     RoadGeneration roadGeneration;
     bool isCanSpawn = false;
     private void Awake()
@@ -23,13 +23,14 @@ public class SpawnGold : MonoBehaviour
             }
             else isCanSpawn = true;
         }
+        Debug.Log(gameObject);
        
         int chance = Random.Range(0, 10);
         if (chance > 5 && isCanSpawn)
         {
-            Vector3 position = new Vector3(Random.Range(SpawnPoint.position.x - 1, SpawnPoint.position.x + 1), 0f,
-                Random.Range(SpawnPoint.position.z - 1, SpawnPoint.position.z - 1));
-            Instantiate(gold, position, Quaternion.identity);
+            Vector3 position = new Vector3(Random.Range(_spawnPoint.position.x - 1, _spawnPoint.position.x + 1), 0f,
+                Random.Range(_spawnPoint.position.z - 1, _spawnPoint.position.z - 1));
+            Instantiate(_gold, position, Quaternion.identity);
         }
     }
 

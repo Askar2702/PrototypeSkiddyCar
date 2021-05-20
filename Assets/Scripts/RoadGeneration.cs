@@ -5,14 +5,14 @@ using System.Linq;
 
 public class RoadGeneration : MonoBehaviour
 {
-    [SerializeField] GameObject EasyRoad;
-    [SerializeField] GameObject VeryHardRoad;
-    [SerializeField] GameObject HardRoad;
-    [SerializeField] int countSpawnRoad;
-    [SerializeField] Material[] roadMat;
+    [SerializeField] private GameObject _easyRoad;
+    [SerializeField] private GameObject _veryHardRoad;
+    [SerializeField] private GameObject _hardRoad;
+    [SerializeField]  private int _countSpawnRoad;
+    [SerializeField] private Material[] _roadMat;
     public List<Transform> Cell = new List<Transform>();
-    [SerializeField] int Step = 30;
-    [SerializeField] Material finishMat;
+    [SerializeField] private int _step = 30;
+    [SerializeField] private Material _finishMat;
     int turnChance = 0;
     MeshRenderer Mesh;
     Vector3 MeshSize;
@@ -22,17 +22,17 @@ public class RoadGeneration : MonoBehaviour
     GameObject road;
     void Start()
     {
-        gameManager = GameManager.gameManager;
-        turnChance = gameManager.turnChance;
+        gameManager = GameManager.Manager;
+        turnChance = gameManager.TurnChance;
         ChoiceOfRoad();
         GenerationCell();
     }
     private void GenerationCell()
     {
-        if (countSpawnRoad > 0)
+        if (_countSpawnRoad > 0)
         {
-            while (Step > 0) {
-                int rand = Random.Range(turnChance, countSpawnRoad);
+            while (_step > 0) {
+                int rand = Random.Range(turnChance, _countSpawnRoad);
                 for (int i = 0; i < rand; i++)
                 {// тут решается сколько блоков рандомно будет чтоб после них начал спавнить блок справа
                    // Debug.Log(rand);
@@ -45,17 +45,17 @@ public class RoadGeneration : MonoBehaviour
                     _road = Instantiate(road, position, Quaternion.identity);
                     _road.transform.parent = transform;
                     Cell.Add(_road.transform);
-                    Step--;
+                    _step--;
                     if (i >= rand - 1)
                     {
-                        int rand2 = Random.Range(turnChance, countSpawnRoad);
+                        int rand2 = Random.Range(turnChance, _countSpawnRoad);
                         for (int j = 0; j < rand2; j++)
                         {
                             position = new Vector3(Cell.LastOrDefault().transform.localPosition.x + 1 * MeshSize.x, 0f, Cell.LastOrDefault().transform.localPosition.z);
                             _road = Instantiate(road, position, Quaternion.identity);
                             _road.transform.parent = transform;
                             Cell.Add(_road.transform);
-                            Step--;
+                            _step--;
                         }
                     }
                 }
@@ -66,28 +66,28 @@ public class RoadGeneration : MonoBehaviour
 
     private void ChangeMatCell()
     {
-        var _mat = roadMat[Random.Range(0, roadMat.Length)];
+        var _mat = _roadMat[Random.Range(0, _roadMat.Length)];
         foreach (var mat in Cell)
             mat.GetComponent<Renderer>().material = _mat;
         var lastCell = Cell.LastOrDefault();
-        lastCell.GetComponent<Renderer>().material = finishMat;
+        lastCell.GetComponent<Renderer>().material = _finishMat;
         lastCell.gameObject.AddComponent<Finish>();
     }
     private void ChoiceOfRoad()
    {
-        if(gameManager._gameMode == GameManager.GameMode.VeryHard)
+        if(gameManager.DifficultyMode == GameManager.GameMode.VeryHard)
         {
-            road = VeryHardRoad;
-            Step = 70;
+            road = _veryHardRoad;
+            _step = 70;
         }
-        else if (gameManager._gameMode == GameManager.GameMode.Hard)
+        else if (gameManager.DifficultyMode == GameManager.GameMode.Hard)
         {
-            road = HardRoad;
-            Step = 50;
+            road = _hardRoad;
+            _step = 50;
         }
         else
         {
-            road = EasyRoad;
+            road = _easyRoad;
         }
    }
 

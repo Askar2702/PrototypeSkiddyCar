@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 964e1a06acf025548b15a714fa2eac7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gold: {fileID: 2155690170322577877, guid: 11423490042c5f24cbf9d382107a63b9, type: 3}
-  SpawnPoint: {fileID: 5631044208278595742}
+  _gold: {fileID: 2155690170322577877, guid: 11423490042c5f24cbf9d382107a63b9, type: 3}
+  _spawnPoint: {fileID: 5631044208278595742}
 --- !u!1 &7442729599018294428
 GameObject:
   m_ObjectHideFlags: 0
